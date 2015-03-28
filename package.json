@@ -1,5 +1,5 @@
 {
-	"name": "NodeWebkitApp1",
+	"name": "$safeprojectname$",
 	"main": "./index.html",
 	"window": {
 		"toolbar": false,
