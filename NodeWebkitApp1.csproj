@@ -64,8 +64,8 @@
   <PropertyGroup>
     <PreBuildEvent>IF "$(ConfigurationName)" EQU "Release" (
 	echo Cleaning output directory: $(TargetDir)
-	REM del /S /Q "$(TargetDir)*.*"
-	del /S /Q "$(TargetDir)*.js.map"
+	del /S /Q "$(TargetDir)*.*"
+	REM del /S /Q "$(TargetDir)*.js.map"
 	echo.
 )</PreBuildEvent>
   </PropertyGroup>
