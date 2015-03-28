@@ -12,11 +12,9 @@
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <Icon>__TemplateIcon.png</Icon>
-    <PreviewImage>__PreviewImage.png</PreviewImage>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="NodeWebkitApp1.csproj" File="NodeWebkitApp1.csproj" ReplaceParameters="true">
-      <ProjectItem ReplaceParameters="true" TargetFileName="NodeWebkitApp1.csproj.user">NodeWebkitApp1.csproj.user</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="index.html">index.html</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties" />
