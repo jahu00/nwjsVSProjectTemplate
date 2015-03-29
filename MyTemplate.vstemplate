@@ -17,8 +17,15 @@
     <Project TargetFileName="NodeWebkitApp1.csproj" File="NodeWebkitApp1.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="index.html">index.html</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="package.Debug.json">package.Debug.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="package.Release.json">package.Release.json</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties" />
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <ProjectItem ReplaceParameters="false" TargetFileName="_references.js">_references.js</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="readme.txt">readme.txt</ProjectItem>
+      </Folder>
       <ProjectItem ReplaceParameters="false" TargetFileName="zip.ps1">zip.ps1</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="extend.ps1">extend.ps1</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

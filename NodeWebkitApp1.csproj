@@ -42,10 +42,21 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="package.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Scripts\readme.txt" />
+    <Content Include="Scripts\_references.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="extend.ps1" />
     <None Include="zip.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json"/>
+    <Content Include="package.Debug.json">
+      <DependentUpon>package.json</DependentUpon>
+    </Content>
+    <Content Include="package.Release.json">
+      <DependentUpon>package.json</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html">
@@ -73,6 +84,19 @@ del /S /Q "$(TargetDir)$(TargetName)$(TargetExt)"
 del /S /Q "$(TargetDir)$(TargetName)$(TargetExt).config"
 del /S /Q "$(TargetDir)$(TargetName).pdb"
 echo.
+IF NOT EXIST "$(ProjectDir)package.$(ConfigurationName).json" (
+	echo WARRNING: Extended configuration file "$(ProjectDir)package.$(ConfigurationName).json" was not found. Using default.
+	copy /Y "$(ProjectDir)package.json" "$(TargetDir)$package.json"
+) ELSE (
+	IF EXIST "$(ProjectDir)$(TargetName).nw" (
+		echo Deleting old package.json: $(TargetDir)package.json
+		del /S /Q "$(TargetDir)package.json"
+		echo.
+	)
+	echo Building package.json for configuration $(ConfigurationName): $(TargetDir)package.json
+	powershell -executionpolicy remotesigned -File "$(ProjectDir)extend.ps1" "$(ProjectDir)package.json" "$(ProjectDir)package.$(ConfigurationName).json" "$(TargetDir)package.json"
+	echo.
+)
 REM If release create nw package
 IF "$(ConfigurationName)" EQU "Release" (
 	IF EXIST "$(ProjectDir)$(TargetName).nw" (
@@ -82,6 +106,9 @@ IF "$(ConfigurationName)" EQU "Release" (
 	)
 	echo Building package: $(ProjectDir)$(TargetName).nw
 	powershell -executionpolicy remotesigned -File "$(ProjectDir)zip.ps1" "$(TargetDir)\" "$(ProjectDir)$(TargetName).nw"
+	IF NOT EXIST "$(ProjectDir)$(TargetName).nw" (
+		echo ERROR: Building package "$(ProjectDir)$(TargetName).nw" failed!
+	)
  )</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
