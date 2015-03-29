@@ -6,7 +6,7 @@ What you can do with it:
  - When you select <b>Release</b> configuration an nw package will created in project folder
 
 Usage tips:
- - To install download <i>nwjsApp.zip</i> from <a href="https://github.com/jahu00/nwjsVSProjectTemplate/releases/tag/1.0">here</a> and copy it to<br/> <i>C:\Users\\\<your&nbsp;user&nbsp;name>\Documents\Visual&nbsp;Studio&nbsp;2013\Templates\ProjectTemplates</i>
+ - To install download <i>nwjsApp.zip</i> from <a href="https://github.com/jahu00/nwjsVSProjectTemplate/releases">here</a> and copy it to<br/> <i>C:\Users\\\<your&nbsp;user&nbsp;name>\Documents\Visual&nbsp;Studio&nbsp;2013\Templates\ProjectTemplates</i>
  - You have to add path to your copy of nw.js in Project\Properties\Debug\Start external program (by default it points to <i>C:\Program Files\nwjs-v0.12.0-win-x64\nw.exe</i>)
  - Files which you want included in your app's package should be set as <b>Content</b> with either <b>Copy if newer</b> or <b>Copy always</b>
  - To use TypeScript include generated JavaScript file in the project and set it to be copied to output (see above); <a href="https://github.com/jahu00/TypeScriptPlusItemTemplate">this</a> item template might help as it adds both TypeScript file and the output JavaScript file to the project
