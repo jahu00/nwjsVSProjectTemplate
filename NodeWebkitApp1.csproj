@@ -88,7 +88,7 @@ IF NOT EXIST "$(ProjectDir)package.$(ConfigurationName).json" (
 	echo WARRNING: Extended configuration file "$(ProjectDir)package.$(ConfigurationName).json" was not found. Using default.
 	copy /Y "$(ProjectDir)package.json" "$(TargetDir)$package.json"
 ) ELSE (
-	IF EXIST "$(ProjectDir)$(TargetName).nw" (
+	IF EXIST "$(TargetDir)package.json" (
 		echo Deleting old package.json: $(TargetDir)package.json
 		del /S /Q "$(TargetDir)package.json"
 		echo.
