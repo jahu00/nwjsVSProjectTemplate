@@ -1,5 +1,7 @@
 {
+    "main": "../index.html",
     "window": {
-        "toolbar": true
+        "toolbar": true,
+        "height": 520
     }
 }
