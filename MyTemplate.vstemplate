@@ -16,9 +16,11 @@
   <TemplateContent>
     <Project TargetFileName="NodeWebkitApp1.csproj" File="NodeWebkitApp1.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="index.html">index.html</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="package.Debug.json">package.Debug.json</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="package.Release.json">package.Release.json</ProjectItem>
+      <Folder Name="Config" TargetFolderName="Config">
+        <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="package.Debug.json">package.Debug.json</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="package.Release.json">package.Release.json</ProjectItem>
+      </Folder>
       <Folder Name="Properties" TargetFolderName="Properties" />
       <Folder Name="Scripts" TargetFolderName="Scripts">
         <ProjectItem ReplaceParameters="false" TargetFileName="_references.js">_references.js</ProjectItem>

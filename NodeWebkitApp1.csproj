@@ -12,9 +12,9 @@
     <AssemblyName>$safeprojectname$</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-	<StartAction>Program</StartAction>
+    <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\nwjs-v0.12.0-win-x64\nw.exe</StartProgram>
-    <StartArguments>.</StartArguments>
+    <StartArguments>..</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>
@@ -50,11 +50,11 @@
     <None Include="zip.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="package.json"/>
-    <Content Include="package.Debug.json">
+    <Content Include="Config\package.json"/>
+    <Content Include="Config\package.Debug.json">
       <DependentUpon>package.json</DependentUpon>
     </Content>
-    <Content Include="package.Release.json">
+    <Content Include="Config\package.Release.json">
       <DependentUpon>package.json</DependentUpon>
     </Content>
   </ItemGroup>
@@ -84,9 +84,9 @@ del /S /Q "$(TargetDir)$(TargetName)$(TargetExt)"
 del /S /Q "$(TargetDir)$(TargetName)$(TargetExt).config"
 del /S /Q "$(TargetDir)$(TargetName).pdb"
 echo.
-IF NOT EXIST "$(ProjectDir)package.$(ConfigurationName).json" (
-	echo WARRNING: Extended configuration file "$(ProjectDir)package.$(ConfigurationName).json" was not found. Using default.
-	copy /Y "$(ProjectDir)package.json" "$(TargetDir)$package.json"
+IF NOT EXIST "$(ProjectDir)Config\package.$(ConfigurationName).json" (
+	echo WARRNING: Extended configuration file "$(ProjectDir)Config\package.$(ConfigurationName).json" was not found. Using default.
+	copy /Y "$(ProjectDir)Config\package.json" "$(TargetDir)package.json"
 ) ELSE (
 	IF EXIST "$(TargetDir)package.json" (
 		echo Deleting old package.json: $(TargetDir)package.json
@@ -94,9 +94,13 @@ IF NOT EXIST "$(ProjectDir)package.$(ConfigurationName).json" (
 		echo.
 	)
 	echo Building package.json for configuration $(ConfigurationName): $(TargetDir)package.json
-	powershell -executionpolicy remotesigned -File "$(ProjectDir)extend.ps1" "$(ProjectDir)package.json" "$(ProjectDir)package.$(ConfigurationName).json" "$(TargetDir)package.json"
+	powershell -executionpolicy remotesigned -File "$(ProjectDir)extend.ps1" "$(ProjectDir)Config\package.json" "$(ProjectDir)Config\package.$(ConfigurationName).json" "$(TargetDir)package.json"
 	echo.
 )
+IF NOT EXIST "$(TargetDir)package.json" (
+	echo ERROR: Configuration is missing
+)
+copy /Y "$(TargetDir)package.json" "$(ProjectDir)package.json"
 REM If release create nw package
 IF "$(ConfigurationName)" EQU "Release" (
 	IF EXIST "$(ProjectDir)$(TargetName).nw" (
